@@ -6,8 +6,7 @@ date=`date "+%Y-%m-%dT%H:%M:%S%Z"`
 result_path="$pwd/results/$date-$rev"
 target_path="/home/jswalens/ecoop-2016-results/$date-$rev"
 
-tests="random-x64-y64-z3-n4.txt"
-versions="llcc-2.3 pbcc-2.3"
+tests="random-x64-y64-z3-n4.txt random-x64-y64-z3-n48.txt"
 
 lein=$pwd/lein
 
@@ -25,11 +24,15 @@ do
   do
   	for t in 1 2 4 8 16
   	do
-      for version in $versions
+      echo "i=$i; test=$test; t=$t"
+      version="llcc-2.3"
+      cd $pwd/$version
+  		$lein run -i $pwd/$test -t $t > $result_path/$test-$version-t$t-i$i.txt
+      version="pbcc-3"
+      cd $pwd/$version
+      for a in 1 2 4 8 16
       do
-        echo "i=$i; test=$test; t=$t; version=$version"
-        cd $pwd/$version
-    		$lein run -i $pwd/$test -t $t > $result_path/$test-$version-t$t-i$i.txt
+        $lein run -i $pwd/$test -t $t -a $a > $result_path/$test-$version-t$t-a$a-i$i.txt
       done
   	done
   done
