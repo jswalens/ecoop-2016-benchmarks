@@ -6,7 +6,7 @@ date=`date "+%Y-%m-%dT%H:%M:%S%Z"`
 result_path="$pwd/results/$date-$rev"
 target_path="/home/jswalens/ecoop-2016-results/$date-$rev"
 
-tests="random-x64-y64-z3-n32"
+tests="random-x32-y32-z3-n16 random-x32-y32-z3-n64 random-x64-y64-z3-n16"
 
 lein=$pwd/lein
 
