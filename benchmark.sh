@@ -25,7 +25,7 @@ echo "Benchmarking..."
 
 mkdir -p $result_path
 
-for i in {1..5}
+for i in {1..30}
 do
   for test in $tests
   do
