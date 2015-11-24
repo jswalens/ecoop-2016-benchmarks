@@ -6,8 +6,7 @@ date=`date "+%Y%m%dT%H%M"`
 result_path="$pwd/results/$date-$rev"
 target_path="/home/jswalens/ecoop-2016-results/$date-$rev"
 
-pars="-n 4 -r 512"
-pars_filename="${pars// /_}"
+#pars="-n 4 -r 512"
 gc_opts="-XX:+UseG1GC"
 
 lein=$pwd/lein
@@ -22,19 +21,23 @@ mkdir -p $result_path
 
 cd $pwd/bayes-8
 
-for i in {1..3}
+for i in {1..5}
 do
-  for v in 16
+  for pars in "-n 4 -r 256" "-n 4 -r 512" "-n 5 -r 256" "-n 5 -r 512"
   do
-    for t in 1 2 4 8 16 # 32 64
+    pars_filename="${pars// /_}"
+    for v in 4 8 16 32 64
     do
-      echo "i=$i; v=$v; t=$t; parameters=$pars; gc_opts=$gc_opts"
-      variation=""
-      echo "variation=$variation"
-      JVM_OPTS="$gc_opts" $lein run $pars -v $v -t $t               > $result_path/$variation-$pars_filename-v$v-t$t-i$i.txt
-      variation="alternatives-parallel"
-      echo "variation=$variation"
-      JVM_OPTS="$gc_opts" $lein run $pars -v $v -t $t -x $variation > $result_path/$variation-$pars_filename-v$v-t$t-i$i.txt
+      for t in 1 2 4 8 16 32 # 64
+      do
+        echo "i=$i; v=$v; t=$t; parameters=$pars; gc_opts=$gc_opts"
+        variation=""
+        echo "variation=$variation"
+        JVM_OPTS="$gc_opts" $lein run $pars -v $v -t $t               > $result_path/$variation-$pars_filename-v$v-t$t-i$i.txt
+        variation="alternatives-parallel"
+        echo "variation=$variation"
+        JVM_OPTS="$gc_opts" $lein run $pars -v $v -t $t -x $variation > $result_path/$variation-$pars_filename-v$v-t$t-i$i.txt
+      done
     done
   done
 done
