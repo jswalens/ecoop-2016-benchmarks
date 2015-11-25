@@ -23,10 +23,10 @@ cd $pwd/bayes-8
 
 for i in {1..5}
 do
-  for pars in "-n 4 -r 256" "-n 4 -r 512" "-n 5 -r 256" "-n 5 -r 512"
+  for pars in "-n 5 -r 256" "-n 5 -r 512" "-n 5 -r 750" "-n 6 -r 512"
   do
     pars_filename="${pars// /_}"
-    for v in 4 8 16 32 64
+    for v in 16 32 64 128
     do
       for t in 1 2 4 8 16 32 # 64
       do
