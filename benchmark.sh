@@ -6,7 +6,7 @@ date=`date "+%Y%m%dT%H%M"`
 result_path="$pwd/results/$date-$rev"
 target_path="/home/jswalens/ecoop-2016-results/$date-$rev"
 
-#pars="-n 4 -r 512"
+pars="-n 5 -r 512"
 gc_opts="-XX:+UseG1GC"
 
 lein=$pwd/lein
@@ -23,12 +23,12 @@ cd $pwd/bayes-8
 
 for i in {1..3}
 do
-  for pars in "-n 5 -r 256" "-n 5 -r 512" "-n 5 -r 750" "-n 6 -r 512"
-  do
+  #for pars in "-n 5 -r 256" "-n 5 -r 512" "-n 5 -r 750" "-n 6 -r 512"
+  #do
     pars_filename="${pars// /_}"
-    for v in 16 32 50 64 75 # 128
+    for v in 4 8 16 32 64 128
     do
-      for t in 1 2 4 8 16 32 # 64
+      for t in 1 2 4 8 16 32 64
       do
         echo "i=$i; v=$v; t=$t; parameters=$pars; gc_opts=$gc_opts"
         variation=""
@@ -39,7 +39,7 @@ do
         JVM_OPTS="$gc_opts" $lein run $pars -v $v -t $t -x $variation > $result_path/$variation-$pars_filename-v$v-t$t-i$i.txt
       done
     done
-  done
+  #done
 done
 
 echo "Copying results..."
