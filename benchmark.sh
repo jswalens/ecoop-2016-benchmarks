@@ -21,7 +21,7 @@ mkdir -p $result_path
 
 cd $pwd/bayes-8
 
-for i in {1..30}
+for i in {1..10}
 do
   for v in 64
   do
