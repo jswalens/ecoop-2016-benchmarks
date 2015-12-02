@@ -6,7 +6,7 @@ date=`date "+%Y%m%dT%H%M"`
 result_path="$pwd/results/$date-$rev"
 target_path="/home/jswalens/ecoop-2016-results/$date-$rev"
 
-pars="-n 5 -r 256"
+pars="-n 5 -r 64"
 gc_opts="-XX:+UseG1GC"
 
 lein=$pwd/lein
@@ -21,9 +21,9 @@ mkdir -p $result_path
 
 cd $pwd/bayes-8
 
-for i in {1..10}
+for i in {1..30}
 do
-  for v in 64
+  for v in 32
   do
     for t in {1..48}
     do
