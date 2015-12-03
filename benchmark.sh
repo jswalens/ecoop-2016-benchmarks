@@ -21,17 +21,12 @@ mkdir -p $result_path
 
 cd $pwd/bayes-8
 
-for i in {1..10}
+for i in {1..30}
 do
-  for t in 1 2 3 4 5 6 7 8 12 16 20 24 28 32 48 64
+  for t in 1
   do
-    echo "i=$i; v=$v; t=$t; parameters=$pars; gc_opts=$gc_opts"
-    variation="original"
-    echo "variation=$variation"
-    JVM_OPTS="$gc_opts" $lein run $pars -t $t               > $result_path/$variation-$pars_filename-t$t-i$i.txt
-    variation="alternatives-parallel"
-    echo "variation=$variation"
-    JVM_OPTS="$gc_opts" $lein run $pars -t $t -x $variation > $result_path/$variation-$pars_filename-t$t-i$i.txt
+    echo "i=$i; t=$t; parameters=$pars; gc_opts=$gc_opts"
+    JVM_OPTS="$gc_opts" $lein run $pars -t $t --profile  > $result_path/t$t-i$i.txt
   done
 done
 
