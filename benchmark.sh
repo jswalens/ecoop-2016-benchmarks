@@ -25,7 +25,7 @@ for i in {1..10}
 do
   for v in 32
   do
-    for t in {1..48}
+    for t in 1 2 4 8 16 32 64
     do
       echo "i=$i; v=$v; t=$t; parameters=$pars; gc_opts=$gc_opts"
       variation=""
