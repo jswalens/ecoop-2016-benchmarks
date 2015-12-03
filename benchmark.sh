@@ -23,7 +23,7 @@ cd $pwd/bayes-8
 
 for i in {1..10}
 do
-  for t in 1 2 3 4 5 6 7 8 12 16 20 24 28 32 48 64
+  for t in 1 2 3 4 5 6 7 8 10 12 14 16 20 24 28 32 40 48 56 64 80 96 112 128
   do
     echo "i=$i; v=$v; t=$t; parameters=$pars; gc_opts=$gc_opts"
     variation="original"
