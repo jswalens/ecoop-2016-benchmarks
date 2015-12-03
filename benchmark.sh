@@ -6,7 +6,7 @@ date=`date "+%Y%m%dT%H%M"`
 result_path="$pwd/results/$date-$rev"
 target_path="/home/jswalens/ecoop-2016-results/$date-$rev"
 
-pars="-n 5 -r 64"
+pars="-n 4 -r 64"
 gc_opts="-XX:+UseG1GC"
 
 lein=$pwd/lein
